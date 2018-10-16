@@ -6,6 +6,7 @@ class Categoria
 
     public $id;
     public $nome;
+    public $produtos;
 
 
 public function __construct($id = false){
@@ -93,6 +94,14 @@ $stmt->execute();
 
 }
 
+public function carregarProdutos(){
+
+$this->produtos = Produto::listarPorCategoria($this->id);
+
+
+
+
+}
 
 
 

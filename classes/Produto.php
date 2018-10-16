@@ -57,6 +57,18 @@ return $lista;
 
 }
 
+public static function listarPorCategoria($categoria_id){
+
+$query = "SELECT id, nome, preco, quantidade from produtos where categoria_id = :categoria_id";
+$conexao = Conexao::conectar();
+$stmt = $conexao->prepare($query);
+$stmt->bindValue(':categoria_id', $categoria_id);
+$stmt->execute();
+ return $stmt->fetchAll();
+
+
+}
+
 public function inserir(){
 
 $query = "INSERT INTO produtos (nome,preco,quantidade,categoria_id)
@@ -92,8 +104,17 @@ public function atualizar()
        $stmt->execute();
    }
 
+public function excluir(){
+
+$query = "DELETE FROM produtos WHERE id = :id";
+$conexao = Conexao::conectar();
+$stmt = $conexao->prepare($query);
+$stmt->bindValue(':id', $this->id);
+$stmt->execute();
 
 
+
+}
 
 
 
